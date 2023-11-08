@@ -12,4 +12,14 @@ const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
 });
 
 // Export the configured Sequelize instance for use in other parts of the application
+
+(async () => {
+  try {
+    await sequelize.sync(); // Sync database with app entities
+    console.log('Sync Database');
+  } catch (error) {
+    console.error(error);
+  }
+})();
+
 module.exports = sequelize;

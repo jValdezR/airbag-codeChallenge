@@ -1,0 +1,34 @@
+const User = require('./entities/user.entity');
+
+class UserService{
+
+    async createUser(userObject){
+        try {
+            const user = await User.create(userObject);
+            return {
+                status: 201,
+                user: user.dataValues
+            }
+          } catch (error) {
+            throw new Error(error);
+          }
+        return 'ok';
+    }
+
+    async readUser(){
+        // try {
+        //     const user = await User.findByPk(req.params.userId);
+        //     if (user) {
+        //       res.json(user);
+        //     } else {
+        //       res.status(404).json({ error: 'Usuario no encontrado' });
+        //     }
+        //   } catch (error) {
+        //     res.status(500).json({ error: 'Error al leer el usuario' });
+        //   }
+        return 'ok';
+    }
+}
+
+
+module.exports = new UserService();
