@@ -1,6 +1,8 @@
 # Created by https://www.toptal.com/developers/gitignore/api/dotenv,node
 # Edit at https://www.toptal.com/developers/gitignore?templates=dotenv,node
 
+# docker
+postgres/
 ### dotenv ###
 .env
 
@@ -120,7 +122,6 @@ dist
 
 # DynamoDB Local files
 .dynamodb/
-
 # TernJS port file
 .tern-port
 

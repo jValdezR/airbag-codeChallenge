@@ -6,7 +6,7 @@ const routes = express();
 
 // Mount and use the defined routes from separate route modules
 routes.use(
-  require('./welcome.routes'), // Mounts the welcome routes defined in 'welcome.routes.js'
+  require('./welcome.routes'), // Mounts the welcome routes
 );
 
 // Export the configured Express Router instance containing all defined routes
