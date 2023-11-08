@@ -1,21 +1,29 @@
-const {verifyPost, verifyGet} = require("../validators/user.validator");
+const { verifyPost, verifyGet } = require("../validators/user.validator");
 
 class UserMiddleware {
+    // Middleware function to verify POST requests using user.validator
     async verifyPost(req, res, next) {
         try {
-            await verifyPost().validateAsync({...req.body});
-                next();
+            // Validate the request body using the verifyPost schema
+            await verifyPost().validateAsync({ ...req.body });
+            // If validation is successful, continue to the next middleware or route handler
+            next();
         } catch (error) {
-            res.status(406).json({details:error.details[0].message});
+            // If validation fails, respond with a 406 status and the validation error message
+            res.status(406).json({ details: error.details[0].message });
         }
     }
 
+    // Middleware function to verify GET requests using user.validator
     async verifyGet(req, res, next) {
         try {
-            await verifyGet().validateAsync({...req.query});
-                next();
+            // Validate the request query parameters using the verifyGet schema
+            await verifyGet().validateAsync({ ...req.query });
+            // If validation is successful, continue to the next middleware or route handler
+            next();
         } catch (error) {
-            res.status(406).json({details:error.details[0].message});
+            // If validation fails, respond with a 406 status and the validation error message
+            res.status(406).json({ details: error.details[0].message });
         }
     }
 }

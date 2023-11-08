@@ -1,5 +1,6 @@
 const User = require('./entities/user.entity');
 
+// Function to check if the provided term matches a UUIDv4 pattern
 const isUUIDv4 = (term) => {
     const uuidv4Pattern = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$/;
     return uuidv4Pattern.test(term);
@@ -7,6 +8,7 @@ const isUUIDv4 = (term) => {
 
 class UserService {
 
+    // Create a new user based on the userObject received
     async createUser(userObject) {
         try {
             const user = await User.create(userObject);
@@ -20,7 +22,7 @@ class UserService {
             if (error.name === 'SequelizeUniqueConstraintError')
                 message = error.parent.detail;
             else if (error.name === 'SequelizeValidationError')
-                message = error.errors[0].message
+                message = error.errors[0].message;
             return {
                 status,
                 message
@@ -28,10 +30,17 @@ class UserService {
         }
     }
 
+    // Read user data based on the provided term, which can be an email or phone
     async readUser({ term }) {
         try {
             let user;
-
+            if(!term){
+                user = await User.findAll();
+                return {
+                    status: 202,
+                    users: user
+                }
+            }
             if (isNaN(term)) {
                 if (isUUIDv4(term)) {
                     user = await User.findByPk(term);
@@ -45,7 +54,7 @@ class UserService {
             else {
                 user = await User.findOne({
                     where: { phone: term }
-                })
+                });
             }
             if (user) {
                 return {
@@ -61,11 +70,10 @@ class UserService {
         } catch (error) {
             return {
                 status: 500,
-                message: 'Something goes Wrong'
+                message: 'Something goes wrong'
             }
         }
     }
 }
 
-
-module.exports = new UserService();
+module.exports = new UserService(); // Export an instance of the UserService class
