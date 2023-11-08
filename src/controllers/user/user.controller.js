@@ -6,11 +6,14 @@ class UserController{
     const data = await UserService.createUser(req.body);
     res.json({
       ...data
-    })
+    });
   };
   
   async readUser(req, res){
-    res.json(await UserService.readUser());
+    const data = await UserService.readUser(req.query);
+    res.json({
+      ...data
+    });
   };
 }
 
