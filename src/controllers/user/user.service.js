@@ -11,7 +11,6 @@ class UserService {
                 user: user.dataValues
             }
         } catch (error) {
-            console.log(error);
             let message = 'Something goes wrong';
             if (error.name === 'SequelizeUniqueConstraintError')
                 message = error.parent.detail;
