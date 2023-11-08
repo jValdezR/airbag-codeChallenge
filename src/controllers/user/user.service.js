@@ -1,4 +1,3 @@
-const { Op } = require('sequelize');
 const User = require('./entities/user.entity');
 
 const isUUIDv4 = (term) => {
