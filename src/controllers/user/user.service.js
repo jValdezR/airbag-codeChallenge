@@ -17,7 +17,7 @@ class UserService {
                 user: user.dataValues
             }
         } catch (error) {
-            let message = 'Something goes wrong';
+            let message = 'Something went wrong';
             let status = 400;
             if (error.name === 'SequelizeUniqueConstraintError')
                 message = error.parent.detail;
@@ -70,7 +70,7 @@ class UserService {
         } catch (error) {
             return {
                 status: 500,
-                message: 'Something goes wrong'
+                message: 'Something went wrong'
             }
         }
     }
