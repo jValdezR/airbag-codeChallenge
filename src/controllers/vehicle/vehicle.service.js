@@ -22,7 +22,7 @@ class VehicleService {
         try {
             const vehicle = await Vehicle.create(vehicleObject);
             return {
-                status: 201,
+                status: 200,
                 vehicle: vehicle.dataValues
             };
         } catch (error) {

@@ -9,7 +9,9 @@ class VehicleController {
     async createVehicle(req, res) {
         try {
             const data = await VehicleService.createVehicle(req.body);
-            res.json(data);
+            if (data.status != 200)
+                res.status(data.status).json({ message: data.message })
+            res.status(data.status).json(data.vehicle);
         } catch (error) {
             res.status(500).json({ message: 'Internal Server Error' });
         }
@@ -23,7 +25,9 @@ class VehicleController {
     async findVehicle(req, res) {
         try {
             const data = await VehicleService.findVehicle(req.query);
-            res.json(data);
+            if (data.status != 200)
+                res.status(data.status).json({ message: data.message })
+            res.status(data.status).json(data.vehicle? data.vehicle : data.vehicles);
         } catch (error) {
             res.status(500).json({ message: 'Internal Server Error' });
         }
@@ -37,7 +41,9 @@ class VehicleController {
     async updateVehicle(req, res) {
         try {
             const data = await VehicleService.updateVehicle(req.query, req.body);
-            res.json(data);
+            if(data.status != 200)
+                res.status(data.status).json({message: data.message});
+            res.status(data.status).json(data.vehicle);
         } catch (error) {
             res.status(500).json({ message: 'Internal Server Error' });
         }
@@ -51,7 +57,7 @@ class VehicleController {
     async removeVehicle(req, res) {
         try {
             const data = await VehicleService.removeVehicle(req.query);
-            res.json(data);
+                res.status(data.status).json({message: data.message});
         } catch (error) {
             res.status(500).json({ message: 'Internal Server Error' });
         }

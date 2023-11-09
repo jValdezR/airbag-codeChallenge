@@ -37,8 +37,8 @@ class UserVehicleService {
 
             // Return a success response.
             return {
-                status: 201,
-                message: 'Created'
+                status: 200,
+                message: 'Association created'
             };
         } catch (error) {
             // Handle and log any errors that occur during the process.
