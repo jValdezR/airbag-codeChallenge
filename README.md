@@ -16,9 +16,7 @@ npm install
 docker-compose up -d
 ```
 
-
-
-docker-compose -f docker-compose.prod.yaml --env-file .env.prod up --build```
 ## Stack usado
-* MongoDB
-* Nest# pokeapi
+* PostgreSQL
+* Node Express
+
