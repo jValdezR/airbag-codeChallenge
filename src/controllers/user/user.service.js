@@ -15,7 +15,7 @@ class UserService {
                 user: user.dataValues
             }
         } catch (error) {
-            let message = 'Something went wrong';
+            let message = 'Internal Server Error';
             let status = 400;
             if (error.name === 'SequelizeUniqueConstraintError')
                 message = error.parent.detail;
@@ -29,7 +29,7 @@ class UserService {
     }
 
     // Read user data based on the provided term, which can be an email or phone
-    async readUser({ term }) {
+    async findUser({ term }) {
         try {
             let user;
             if(!term){
@@ -68,7 +68,7 @@ class UserService {
         } catch (error) {
             return {
                 status: 500,
-                message: 'Something went wrong'
+                message: 'Internal Server Error'
             }
         }
     }

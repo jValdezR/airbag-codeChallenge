@@ -20,9 +20,9 @@ class VehicleController {
      * @param {Object} req - Express request object with query parameters.
      * @param {Object} res - Express response object.
      */
-    async readVehicle(req, res) {
+    async findVehicle(req, res) {
         try {
-            const data = await VehicleService.readVehicle(req.query);
+            const data = await VehicleService.findVehicle(req.query);
             res.json(data);
         } catch (error) {
             res.status(500).json({ message: 'Internal Server Error' });
@@ -51,6 +51,15 @@ class VehicleController {
     async removeVehicle(req, res) {
         try {
             const data = await VehicleService.removeVehicle(req.query);
+            res.json(data);
+        } catch (error) {
+            res.status(500).json({ message: 'Internal Server Error' });
+        }
+    }
+
+    async getPrice(req, res) {
+        try {
+            const data = await VehicleService.getPrice();
             res.json(data);
         } catch (error) {
             res.status(500).json({ message: 'Internal Server Error' });

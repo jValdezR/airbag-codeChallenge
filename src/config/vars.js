@@ -10,7 +10,7 @@ module.exports = {
   },
   // Configuration for API keys
   api_keys: {
-
+    FREECURRENCYAPIKEY: process.env.FREECURRENCYAPIKEY
   },
   db: {
     DB_NAME: process.env.DB_NAME,

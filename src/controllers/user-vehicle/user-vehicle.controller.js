@@ -1,17 +1,26 @@
 const userVehicleService = require("./user-vehicle.service");
 
+class UserVehicleController {
+    /**
+     * Create a new user-vehicle association.
+     * @param {Object} req - Express request object.
+     * @param {Object} res - Express response object.
+     */
+    async createUserVehicle(req, res) {
+        try {
+            // Extract user and vehicle information from the request body.
+            const { userTerm, vehicleTerm } = req.body;
 
-class UserVehicleController{
+            // Call the service to create the user-vehicle association.
+            const data = await userVehicleService.createUserVehicle(userTerm, vehicleTerm);
 
-    async createUserVehicle(req, res){
-        const {userTerm, vehicleTerm} = req.body;
-        const data = await userVehicleService.createUserVehicle(userTerm, vehicleTerm);
-        res.json({
-            ...data
-        }) 
+            // Respond with the created association data.
+            res.json({ ...data });
+        } catch (error) {
+            // Handle any errors and send an appropriate response.
+            res.status(500).json({ error: "Failed to create user-vehicle association" });
+        }
     }
-
 }
-
 
 module.exports = new UserVehicleController();

@@ -1,14 +1,22 @@
 const { Op } = require('sequelize');
-const {vehicle : Vehicle} = require("../../database/models/index");
+const { FREECURRENCYAPIKEY } = require('../../config/vars').api_keys;
+const { vehicle: Vehicle } = require("../../database/models/index");
 
-// Check if the given term matches the UUIDv4 pattern
+// Utility function to check if the given term matches the UUIDv4 pattern
 const isUUIDv4 = (term) => {
     const uuidv4Pattern = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$/;
     return uuidv4Pattern.test(term);
-}
+};
+
+let Freecurrencyapi;
+let freecurrencyapi;
+(async () => {
+    // Dynamically import the Freecurrencyapi module and create an instance
+    Freecurrencyapi = (await import('@everapi/freecurrencyapi-js')).default;
+    freecurrencyapi = new Freecurrencyapi(FREECURRENCYAPIKEY);
+})();
 
 class VehicleService {
-
     // Create a new vehicle
     async createVehicle(vehicleObject) {
         try {
@@ -18,7 +26,7 @@ class VehicleService {
                 vehicle: vehicle.dataValues
             };
         } catch (error) {
-            let message = 'Something went wrong';
+            let message = 'Internal Server Error';
             let status = 500;
             if (error.name === 'SequelizeUniqueConstraintError') {
                 message = error.parent.detail;
@@ -35,15 +43,15 @@ class VehicleService {
     }
 
     // Read a vehicle by term (either ID, NIV, or Plate)
-    async readVehicle({ term }) {
+    async findVehicle({ term }) {
         try {
             let vehicle;
-            if(!term){
+            if (!term) {
                 vehicle = await Vehicle.findAll();
                 return {
                     status: 201,
                     vehicles: vehicle
-                }
+                };
             }
 
             if (isNaN(term)) {
@@ -72,7 +80,7 @@ class VehicleService {
         } catch (error) {
             return {
                 status: 500,
-                message: 'Something went wrong'
+                message: 'Internal Server Error'
             };
         }
     }
@@ -80,7 +88,7 @@ class VehicleService {
     // Update a vehicle based on term (either ID, NIV, or Plate)
     async updateVehicle({ term }, vehicleObject) {
         try {
-            let { vehicle } = await this.readVehicle({ term });
+            let { vehicle } = await this.findVehicle({ term });
             if (vehicle) {
                 // Determine the update condition based on term
                 let updateCondition;
@@ -109,7 +117,7 @@ class VehicleService {
                 };
             }
         } catch (error) {
-            let message = 'Something went wrong';
+            let message = 'Internal Server Error';
             let status = 500;
             if (error.name === 'SequelizeUniqueConstraintError') {
                 message = error.parent.detail;
@@ -128,7 +136,7 @@ class VehicleService {
     // Remove a vehicle by term (either ID, NIV, or Plate)
     async removeVehicle({ term }) {
         try {
-            const { vehicle } = await this.readVehicle({ term });
+            const { vehicle } = await this.findVehicle({ term });
             if (vehicle) {
                 await Vehicle.destroy({ where: { id: vehicle.id } });
                 return {
@@ -144,7 +152,46 @@ class VehicleService {
         } catch (error) {
             return {
                 status: 500,
-                message: 'Something went wrong'
+                message: 'Internal Server Error'
+            };
+        }
+    }
+
+    // Get vehicle prices in different currencies
+    async getPrice() {
+        try {
+            let { vehicles } = await this.findVehicle({});
+            const usd = await freecurrencyapi.latest({
+                base_currency: 'MXN',
+                currencies: 'USD'
+            });
+            const eur = await freecurrencyapi.latest({
+                base_currency: 'MXN',
+                currencies: 'EUR'
+            });
+            const gbp = await freecurrencyapi.latest({
+                base_currency: 'MXN',
+                currencies: 'GBP'
+            });
+
+            vehicles = vehicles.map((vehicle) => {
+                const { price } = vehicle.dataValues;
+                return {
+                    ...vehicle.dataValues,
+                    priceUSD: (price * usd.data.USD).toFixed(2),
+                    priceEUR: (price * eur.data.EUR).toFixed(2),
+                    priceGBP: (price * gbp.data.GBP).toFixed(2),
+                };
+            });
+
+            return {
+                status: 200,
+                vehicles
+            };
+        } catch (error) {
+            return {
+                status: 500,
+                message: 'Internal Server Error'
             };
         }
     }

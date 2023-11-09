@@ -17,8 +17,8 @@ class UserController {
   * @param {Object} req - Express request object with query parameters.
   * @param {Object} res - Express response object.
   */
-  async readUser(req, res) {
-    const data = await UserService.readUser(req.query);
+  async findUser(req, res) {
+    const data = await UserService.findUser(req.query);
     // Respond with the data received from the user service
     res.json({ ...data });
   }
