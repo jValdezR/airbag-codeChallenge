@@ -1,4 +1,4 @@
-const { Logger } = require('../database/models/index');
+const { logger : Logger } = require('../database/models/index');
 
 class LoggerMiddleware {
   // Middleware to save request information to the database

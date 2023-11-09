@@ -16,11 +16,17 @@ class UserService {
             }
         } catch (error) {
             let message = 'Internal Server Error';
-            let status = 400;
-            if (error.name === 'SequelizeUniqueConstraintError')
+            let status = 500;
+            if (error.name === 'SequelizeUniqueConstraintError'){
+                status = 400
                 message = error.parent.detail;
-            else if (error.name === 'SequelizeValidationError')
+            }
+                
+            else if (error.name === 'SequelizeValidationError'){
+                status= 400;
                 message = error.errors[0].message;
+            }
+                
             return {
                 status,
                 message
@@ -35,7 +41,7 @@ class UserService {
             if(!term){
                 user = await User.findAll();
                 return {
-                    status: 202,
+                    status: 200,
                     users: user
                 }
             }
@@ -56,13 +62,13 @@ class UserService {
             }
             if (user) {
                 return {
-                    status: 202,
+                    status: 200,
                     user
                 }
             } else {
                 return {
                     status: 404,
-                    message: 'User not found'
+                    message: 'User Not Found'
                 }
             }
         } catch (error) {

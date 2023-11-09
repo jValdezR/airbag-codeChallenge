@@ -1,14 +1,14 @@
 version: '3'
 services:
-  # app:
-  #   build: .  # Build the Docker container using the current directory
-  #   depends_on:
-  #     - postgres  # Ensure the "app" service starts after "postgres"
-  #   ports:
-  #     - "3000:3000"  # Map host port 3000 to container port 3000
-  #   volumes:
-  #     - ./:/usr/src/app/  # Mount the current directory to /usr/src/app in the container
-  #     - /usr/src/app/node_modules  # Mount a volume for Node.js modules
+  app:
+    build: .  # Build the Docker container using the current directory
+    depends_on:
+      - postgres  # Ensure the "app" service starts after "postgres"
+    ports:
+      - "3000:3000"  # Map host port 3000 to container port 3000
+    volumes:
+      - ./:/usr/src/app/  # Mount the current directory to /usr/src/app in the container
+      - /usr/src/app/node_modules  # Mount a volume for Node.js modules
   postgres:
     image: postgres:14.3  # Use the PostgreSQL version 14.3 image
     restart: always  # Restart the "postgres" container if it stops

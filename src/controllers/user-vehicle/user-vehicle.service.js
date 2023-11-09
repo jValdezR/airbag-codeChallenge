@@ -17,7 +17,7 @@ class UserVehicleService {
             if (!user) {
                 return {
                     status: 404,
-                    message: 'User not found'
+                    message: 'User Not Found'
                 };
             }
 
