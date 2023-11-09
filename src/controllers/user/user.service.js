@@ -1,5 +1,4 @@
-const {User} = require("../../database/models/index");
-
+const {user : User} = require("../../database/models/index");
 // Function to check if the provided term matches a UUIDv4 pattern
 const isUUIDv4 = (term) => {
     const uuidv4Pattern = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$/;
@@ -7,7 +6,6 @@ const isUUIDv4 = (term) => {
 }
 
 class UserService {
-
     // Create a new user based on the userObject received
     async createUser(userObject) {
         try {

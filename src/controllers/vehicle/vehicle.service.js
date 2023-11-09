@@ -1,5 +1,5 @@
 const { Op } = require('sequelize');
-const {Vehicle} = require("../../database/models/index");
+const {vehicle : Vehicle} = require("../../database/models/index");
 
 // Check if the given term matches the UUIDv4 pattern
 const isUUIDv4 = (term) => {
