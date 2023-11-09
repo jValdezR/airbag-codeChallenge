@@ -1,8 +1,7 @@
-const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = require('../../../config/postgres'); // Import the pre-configured Sequelize instance
-
+module.exports = (sequelize, Sequelize) =>{
+  const {DataTypes} = Sequelize;
 // Define the model for the "User" entity
-const User = sequelize.define('User', {
+let User = sequelize.define('user', {
   // Define the "id" attribute as a UUID with an automatically generated default value
   id: {
     type: DataTypes.UUID,
@@ -31,4 +30,8 @@ const User = sequelize.define('User', {
   },
 });
 
-module.exports = User; // Export the "User" model for use in other parts of the application
+User.associate = models => {
+  User.hasMany(models.vehicle);
+}
+return User;
+}

@@ -1,4 +1,4 @@
-const User = require('./entities/user.entity');
+const {User} = require("../../database/models/index");
 
 // Function to check if the provided term matches a UUIDv4 pattern
 const isUUIDv4 = (term) => {
