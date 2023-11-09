@@ -11,9 +11,17 @@ npm install
 
 4. Llenar las variables de entorno definidas en el ```.env```
 
-5. Crear el contenedor para la aplicación (aplicacion y base de datos)
+5. Crear la base de datos
+```
+npm run db:create
+```
+6. Crear el contenedor para la aplicación (aplicacion y base de datos)
 ```
 docker-compose up -d
+```
+7. Correr la aplicacion en Node JS (OPCIONAL)
+```
+npm run dev
 ```
 
 ## Stack usado
