@@ -1,22 +1,21 @@
 version: '3'
 services:
   # app:
-  #   build: .
+  #   build: .  # Build the Docker container using the current directory
   #   depends_on:
-
-  #     - postgres
+  #     - postgres  # Ensure the "app" service starts after "postgres"
   #   ports:
-  #     - "3000:3000"
+  #     - "3000:3000"  # Map host port 3000 to container port 3000
   #   volumes:
-  #     - ./:/usr/src/app/
-  #     - /usr/src/app/node_modules
+  #     - ./:/usr/src/app/  # Mount the current directory to /usr/src/app in the container
+  #     - /usr/src/app/node_modules  # Mount a volume for Node.js modules
   postgres:
-    image: postgres:14.3
-    restart: always
+    image: postgres:14.3  # Use the PostgreSQL version 14.3 image
+    restart: always  # Restart the "postgres" container if it stops
     environment:
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}  # Set the PostgreSQL password from an environment variable
+      POSTGRES_DB: ${DB_NAME}  # Set the PostgreSQL database name from an environment variable
     ports:
-      - "5432:5432"
+      - "5432:5432"  # Map host port 5432 to container port 5432
     volumes:
-      - ./postgres:/var/lib/postgresql/data
+      - ./postgres:/var/lib/postgresql/data  # Mount a volume for PostgreSQL data

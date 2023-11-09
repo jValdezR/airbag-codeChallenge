@@ -12,6 +12,9 @@ let User = sequelize.define('user', {
   name: {
     type: DataTypes.STRING,
     allowNull: false,
+    validate:{
+      len: [3, Infinity]
+    }
   },
   // Define the "phone" attribute as a string that can be null and must be unique
   phone: {

@@ -1,16 +1,18 @@
 const Joi = require('joi');
 
 class VehicleValidator {
+  // Validation schema for GET requests
   verifyGet() {
     return Joi.object().keys({
       term: Joi.string(),
     });
   }
 
+  // Validation schema for POST requests
   verifyPost() {
     const customMessages = {
-        'string.pattern.base': 'The "niv" does not match with NIV pattern.',
-      };
+      'string.pattern.base': 'The "niv" does not match the NIV pattern.',
+    };
     return Joi.object().keys({
       plate: Joi.string().required(),
       niv: Joi.string().pattern(/^[A-HJ-NPR-Z0-9]{17}$/).required().messages(customMessages),
@@ -20,15 +22,16 @@ class VehicleValidator {
     });
   }
 
+  // Validation schema for PATCH requests
   verifyPatch() {
     const customMessages = {
-      'alternatives.match': 'The "term" does not match with a UUID or NIV.',
+      'alternatives.match': 'The "term" does not match a UUID or NIV.',
     };
 
     return Joi.object().keys({
       term: Joi.alternatives().try(
-        Joi.string().guid({ version: ['uuidv4'] }),
-        Joi.string().pattern(/^[A-HJ-NPR-Z0-9]{17}$/)
+        Joi.string().guid({ version: ['uuidv4'] }), // Validate against UUID (version 4)
+        Joi.string().pattern(/^[A-HJ-NPR-Z0-9]{17}$/) // Validate against NIV pattern
       ).required().messages(customMessages),
       plate: Joi.string().required(),
       niv: Joi.string().pattern(/^[A-HJ-NPR-Z0-9]{17}$/).required(),
@@ -38,6 +41,7 @@ class VehicleValidator {
     });
   }
 
+  // Validation schema for DELETE requests
   verifyDelete() {
     return Joi.object().keys({
       term: Joi.string().required(),

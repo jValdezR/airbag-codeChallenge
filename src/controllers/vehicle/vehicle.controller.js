@@ -57,6 +57,11 @@ class VehicleController {
         }
     }
 
+    /**
+     * Get the price in different currency for each vehicle
+     * @param {Object} req - Express request object with query parameters.
+     * @param {Object} res - Express response object.
+     */
     async getPrice(req, res) {
         try {
             const data = await VehicleService.getPrice();
