@@ -21,10 +21,12 @@
    ```
    This step will create a container with the application accepting requests on the port you have defined in the environment variables and the database on port 5432.
 
-7. Run the Node.js application (OPTIONAL)
+7. Run the Node.js application in dev mode (OPTIONAL)
    ```
    npm run dev
    ```
+
+8. Check the documentation in ```/api/docs/```
 
 ## Used Stack
 * PostgreSQL

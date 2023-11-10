@@ -30,10 +30,10 @@ const {
  *                  description: The niv of the vehicle
  *              brand:
  *                  type: string
- *                  description: The brand of the vehicle
+ *                  description: The brand of the vehicle (only support Mazda, Toyota, Honda, Renault, Volkswagen)
  *              typeOfVehicle:
  *                  type: string
- *                  description: The vehicle form
+ *                  description: The vehicle form (only support sedan, hb, suv, roadster)
  *              price:
  *                  type: number
  *                  description: The price of the vehicle
