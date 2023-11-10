@@ -11,7 +11,7 @@ class UserService {
         try {
             const user = await User.create(userObject);
             return {
-                status: 201,
+                status: 200,
                 user: user.dataValues
             }
         } catch (error) {
