@@ -7,6 +7,7 @@ module.exports = {
     "password": config.DB_PASSWORD,  // Database password from configuration
     "database": config.DB_NAME,      // Database name from configuration
     "host": config.DB_HOST,          // Database host from configuration
+    "port": config.DB_PORT,          // Database port from configuration
     "dialect": "postgres",           // Database dialect (PostgreSQL)
     "logging": false                // Disable query logging
   },

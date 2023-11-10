@@ -17,7 +17,6 @@ if (config.use_env_variable) {
   // Otherwise, use the database configuration from config.js
   sequelize = new Sequelize(config.database, config.username, config.password, {
     ...config,
-    host: 'postgres'
   });
 }
 
