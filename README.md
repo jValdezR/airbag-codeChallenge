@@ -1,30 +1,31 @@
-# airbag-codeChallenge
+# airbag-codeChallenge by Jesus Daniel Valdez Rodriguez
 
-## Ejecutar en desarrollo
+## Run in Development
 
-1. Clonar el repositorio
-2. Ejecutar
-```
-npm install
-```
-3. Clonar el archivo __.env.template__ y renombrar la copia a __.env__
+1. Clone the repository
+2. Run
+   ```
+   npm install
+   ```
+3. Clone the __.env.template__ file and rename the copy to __.env__
 
-4. Llenar las variables de entorno definidas en el ```.env```
+4. Fill in the environment variables defined in the ```.env```
 
-5. Crear la base de datos
-```
-npm run db:create
-```
-6. Crear el contenedor para la aplicación (aplicacion y base de datos)
-```
-docker-compose up --build
-```
-7. Correr la aplicacion en Node JS (OPCIONAL)
-```
-npm run dev
-```
+5. Create the database
+   ```
+   npm run db:create
+   ```
+6. Create the container for the application (application and database)
+   ```
+   docker-compose up --build
+   ```
+   This step will create a container with the application accepting requests on the port you have defined in the environment variables and the database on port 5432.
 
-## Stack usado
+7. Run the Node.js application (OPTIONAL)
+   ```
+   npm run dev
+   ```
+
+## Used Stack
 * PostgreSQL
 * Node Express
-
