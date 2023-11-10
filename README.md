@@ -17,7 +17,7 @@ npm run db:create
 ```
 6. Crear el contenedor para la aplicación (aplicacion y base de datos)
 ```
-docker-compose up -d
+docker-compose up --build
 ```
 7. Correr la aplicacion en Node JS (OPCIONAL)
 ```
