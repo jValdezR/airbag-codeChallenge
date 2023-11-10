@@ -31,6 +31,15 @@ const router = express.Router();
  *  post:
  *      summary: create the relation between user and vehicle
  *      tags: [UserVehicle]
+ *      parameters:
+ *          -   in: header
+ *              name: api_key_name
+ *              schema:
+ *                  type: string 
+ *          -   in: header
+ *              name: api_key_value
+ *              schema:
+ *                  type: string 
  *      requestBody:
  *       required: true
  *       content:

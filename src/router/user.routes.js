@@ -37,11 +37,19 @@ const { verifyPost, verifyGet } = require('../middlewares/user.middleware');
  *      summary: find an user or all user registered
  *      tags: [User]
  *      parameters:
+ *          -   in: header
+ *              name: api_key_name
+ *              schema:
+ *                  type: string 
+ *          -   in: header
+ *              name: api_key_value
+ *              schema:
+ *                  type: string 
  *          -   in: query
  *              name: term
  *              schema:
  *                  type: string
- *              description: 'Send term (id, email, phone) if you want to get just one user'    
+ *              description: 'Send term (id, email, phone) if you want to get just one user'   
  *      responses:
  *          200: 
  *              description: User has been finded
@@ -58,6 +66,15 @@ router.get('/users/', verifyGet, findUser);
  *  post:
  *      summary: create an user
  *      tags: [User]
+ *      parameters:
+ *          -   in: header
+ *              name: api_key_name
+ *              schema:
+ *                  type: string 
+ *          -   in: header
+ *              name: api_key_value
+ *              schema:
+ *                  type: string 
  *      requestBody:
  *       required: true
  *       content:

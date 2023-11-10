@@ -58,6 +58,15 @@ const {
  *  get:
  *      summary: get all vehicles registered and the price in different currencies
  *      tags: [Vehicle]
+ *      parameters:
+ *          -   in: header
+ *              name: api_key_name
+ *              schema:
+ *                  type: string 
+ *          -   in: header
+ *              name: api_key_value
+ *              schema:
+ *                  type: string 
  *      responses:
  *          200: 
  *              description: Response with array of all vehicles
@@ -72,6 +81,15 @@ router.get('/vehicles/price/', getPrice);
  *  post:
  *      summary: create a vehicle
  *      tags: [Vehicle]
+ *      parameters:
+ *          -   in: header
+ *              name: api_key_name
+ *              schema:
+ *                  type: string 
+ *          -   in: header
+ *              name: api_key_value
+ *              schema:
+ *                  type: string 
  *      requestBody:
  *       required: true
  *       content:
@@ -99,11 +117,19 @@ router.post('/vehicles/', verifyPost, createVehicle);
  *      summary: update a vehicle
  *      tags: [Vehicle]
  *      parameters:
- *        - in: query
- *          name: term
- *          schema:
- *            type: string
- *            description: 'term to find the vehicle (id, niv, plate)'
+ *          -   in: header
+ *              name: api_key_name
+ *              schema:
+ *                  type: string 
+ *          -   in: header
+ *              name: api_key_value
+ *              schema:
+ *                  type: string 
+ *          - in: query
+ *            name: term
+ *            schema:
+ *              type: string
+ *              description: 'term to find the vehicle (id, niv, plate)'
  *      requestBody:
  *       required: true
  *       content:
@@ -131,6 +157,14 @@ router.patch('/vehicles/', verifyPatch, updateVehicle);
  *      summary: remove a vehicle
  *      tags: [Vehicle]
  *      parameters:
+ *          -   in: header
+ *              name: api_key_name
+ *              schema:
+ *                  type: string 
+ *          -   in: header
+ *              name: api_key_value
+ *              schema:
+ *                  type: string 
  *          -   in: query
  *              name: term
  *              schema:
@@ -153,6 +187,14 @@ router.delete('/vehicles/', verifyDelete, removeVehicle);
  *      summary: find a vehicle or all vehicles registered
  *      tags: [Vehicle]
  *      parameters:
+ *          -   in: header
+ *              name: api_key_name
+ *              schema:
+ *                  type: string 
+ *          -   in: header
+ *              name: api_key_value
+ *              schema:
+ *                  type: string 
  *          -   in: query
  *              name: term
  *              schema:

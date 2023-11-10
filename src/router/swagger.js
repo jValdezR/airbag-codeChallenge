@@ -5,7 +5,7 @@ const swaggerSpec = {
       info: {
         title: 'Airbag code challenge documentation',
         version: '1.0.0',
-        description: 'Api for Airbag challenge',
+        description: 'Api for Airbag challenge, don\'t forget user your api_key_name and api_key_value in the header of each request!!!',
       },
       servers:[
           {
