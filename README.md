@@ -29,3 +29,6 @@
 ## Used Stack
 * PostgreSQL
 * Node Express
+
+## Visit the API on Railway:
+https://airbag-codechallenge-production.up.railway.app/api/

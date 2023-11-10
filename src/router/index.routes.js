@@ -2,15 +2,20 @@
 const express = require('express');
 const {saveRequest} = require('../middlewares/logger.middleware');
 const { verifyApiKey } = require('../middlewares/security.middleware');
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerSpec = require('./swagger');
 
 // Create an instance of the Express Router to define application routes
 const routes = express();
 
+
 // Mount and use the defined routes from separate route modules
 routes.use(
-  verifyApiKey,
-  saveRequest,
+  '/docs/', swaggerUi.serve, swaggerUi.setup(swaggerJsDoc(swaggerSpec)),
   require('./welcome.routes'), // Mounts the welcome routes
+  verifyApiKey, // Middleware for security
+  saveRequest,  // Middleare to save all request
   require('./user.routes'), // Mounts the user routes
   require('./vehicle.routes'), //Mount the vehicle routes
   require('./user-vehicle.routes') //Mount the user-vehicle routes

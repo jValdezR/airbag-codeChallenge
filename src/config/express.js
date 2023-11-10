@@ -3,11 +3,9 @@ const cors = require('cors'); // Middleware for handling Cross-Origin Resource S
 const helmet = require('helmet'); // Middleware for setting secure HTTP headers.
 const morgan = require('morgan'); // Middleware for logging HTTP requests.
 const express = require('express'); // Web application framework for Node.js.
-
 // Import application routes
 const routes = require('../router/index.routes'); // Application routes defined in another file.
 const { limit, cors_allowed, debug } = require('./vars').server; // Configuration and environment variables.
-
 // Create an instance of the Express application
 const app = express();
 
@@ -20,12 +18,8 @@ if (debug === 'true') {
     app.use(morgan('tiny')); // Use 'morgan' middleware with 'tiny' format to log requests.
 }
 
-// Apply the 'helmet' middleware to enhance application security
-app.use(helmet());
-
 // Configure the 'cors' middleware to handle CORS policy for requests
-app.use(cors({ origin: cors_allowed }));
-
+// app.use(cors({ origin: cors_allowed }));
 // Use the routes defined in the 'index.routes.js' file
 app.use('/api', routes);
 
