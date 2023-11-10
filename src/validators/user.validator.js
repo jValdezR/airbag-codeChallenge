@@ -5,7 +5,8 @@ class UserValidator {
     verifyGet = () => Joi.object().keys({
         term: Joi.alternatives().try(
             Joi.string().email(), 
-            Joi.string().max(10).pattern(/^[0-9]+$/)
+            Joi.string().max(10).pattern(/^[0-9]+$/),
+            Joi.string().guid({ version: ['uuidv4'] }),
           ),
     });
 

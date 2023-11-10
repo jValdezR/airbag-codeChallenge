@@ -10,7 +10,7 @@ class UserMiddleware {
             next();
         } catch (error) {
             // If validation fails, respond with a 406 status and the validation error message
-            res.status(406).json({ details: error.details[0].message });
+            res.status(406).json({ message: error.details[0].message });
         }
     }
 

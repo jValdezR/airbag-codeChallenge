@@ -68,7 +68,7 @@ class UserService {
             } else {
                 return {
                     status: 404,
-                    message: 'User Not Found'
+                    message: 'User Not Found.'
                 }
             }
         } catch (error) {

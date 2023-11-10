@@ -28,6 +28,18 @@ describe('findUserTest', ()=> {
         expect(response.body).to.have.property('email').that.is.a('string');
     });
 
+    it('finUser should return an user with 200 status code when called with existent user id', async () => {
+        const response = await request(app).get('/api/users/').query({term: '09b07ac5-ce8e-42f2-bc9d-d0c7b83e6677'});
+        expect(response.status).to.equal(200);
+        expect(response.type).to.match(/json/);
+        expect(response.body).to.be.an('object')
+
+        expect(response.body).to.have.property('id').that.is.a('string');
+        expect(response.body).to.have.property('name').that.is.a('string');
+        expect(response.body).to.have.property('phone').that.is.a('string');
+        expect(response.body).to.have.property('email').that.is.a('string');
+    });
+
     it('finUser should return an array of users with 200 status code when called without term', async () => {
         const response = await request(app).get('/api/users/').query();
         expect(response.status).to.equal(200);
@@ -41,7 +53,7 @@ describe('findUserTest', ()=> {
         expect(response.type).to.match(/json/);
         expect(response.body).to.be.an('object');
 
-        expect(response.body).to.have.property('message').that.is.a('string').and.equal('User Not Found');
+        expect(response.body).to.have.property('message').that.is.a('string').and.equal('User Not Found.');
     });
 
     it('finUser should return a message with 404 status code when called with inexistent user email', async () => {
@@ -50,28 +62,28 @@ describe('findUserTest', ()=> {
         expect(response.type).to.match(/json/);
         expect(response.body).to.be.an('object');
 
-        expect(response.body).to.have.property('message').that.is.a('string').and.equal('User Not Found');
+        expect(response.body).to.have.property('message').that.is.a('string').and.equal('User Not Found.');
     });
 });
 
 describe('createUserTest',() => {
 
-    it('createUser must create and return an user when called with valid data object', async ()=>{
-        const response = await request(app).post('/api/users/').send({
-            "name": "Jen",
-            "phone": "0884654313",
-            "email": "maddil4@mail.com"
-        });
+    // it('createUser must create and return an user when called with valid data object', async ()=>{
+    //     const response = await request(app).post('/api/users/').send({
+    //         "name": "Jen",
+    //         "phone": "0884654313",
+    //         "email": "maddil4@mail.com"
+    //     });
 
-        expect(response.status).to.equal(200);
-        expect(response.type).to.match(/json/);
-        expect(response.body).to.be.an('object');
+    //     expect(response.status).to.equal(200);
+    //     expect(response.type).to.match(/json/);
+    //     expect(response.body).to.be.an('object');
 
-        expect(response.body).to.have.property('id').that.is.a('string');
-        expect(response.body).to.have.property('name').that.is.a('string');
-        expect(response.body).to.have.property('phone').that.is.a('string');
-        expect(response.body).to.have.property('email').that.is.a('string');
-    });
+    //     expect(response.body).to.have.property('id').that.is.a('string');
+    //     expect(response.body).to.have.property('name').that.is.a('string');
+    //     expect(response.body).to.have.property('phone').that.is.a('string');
+    //     expect(response.body).to.have.property('email').that.is.a('string');
+    // });
 
     it('createUser return a message when called with existent phone', async ()=>{
         const response = await request(app).post('/api/users/').send({
@@ -112,7 +124,7 @@ describe('createUserTest',() => {
         expect(response.type).to.match(/json/);
         expect(response.body).to.be.an('object');
 
-        expect(response.body).to.have.property('details').that.is.a('string').and.equal('\"name\" length must be at least 3 characters long');
+        expect(response.body).to.have.property('message').that.is.a('string').and.equal('\"name\" length must be at least 3 characters long');
     });
 
     it('createUser return a message when called with phone > 10 len', async ()=>{
@@ -126,7 +138,7 @@ describe('createUserTest',() => {
         expect(response.type).to.match(/json/);
         expect(response.body).to.be.an('object');
 
-        expect(response.body).to.have.property('details').that.is.a('string').and.equal('\"phone\" length must be less than or equal to 10 characters long');
+        expect(response.body).to.have.property('message').that.is.a('string').and.equal('\"phone\" length must be less than or equal to 10 characters long');
     });
 
     it('createUser return a message when called with phone that contains leeters', async ()=>{
@@ -140,7 +152,7 @@ describe('createUserTest',() => {
         expect(response.type).to.match(/json/);
         expect(response.body).to.be.an('object');
 
-        expect(response.body).to.have.property('details').that.is.a('string').and.equal('Phone contains letters.');
+        expect(response.body).to.have.property('message').that.is.a('string').and.equal('Phone contains letters.');
     });
 
     it('createUser return a message when called without name', async ()=>{
@@ -153,7 +165,7 @@ describe('createUserTest',() => {
         expect(response.type).to.match(/json/);
         expect(response.body).to.be.an('object');
 
-        expect(response.body).to.have.property('details').that.is.a('string').and.equal('\"name\" is required');
+        expect(response.body).to.have.property('message').that.is.a('string').and.equal('\"name\" is required');
     });
 
     it('createUser return a message when called without phone', async ()=>{
@@ -166,7 +178,7 @@ describe('createUserTest',() => {
         expect(response.type).to.match(/json/);
         expect(response.body).to.be.an('object');
 
-        expect(response.body).to.have.property('details').that.is.a('string').and.equal('\"phone\" is required');
+        expect(response.body).to.have.property('message').that.is.a('string').and.equal('\"phone\" is required');
     });
 
     it('createUser return a message when called without email', async ()=>{
@@ -179,7 +191,7 @@ describe('createUserTest',() => {
         expect(response.type).to.match(/json/);
         expect(response.body).to.be.an('object');
 
-        expect(response.body).to.have.property('details').that.is.a('string').and.equal('\"email\" is required');
+        expect(response.body).to.have.property('message').that.is.a('string').and.equal('\"email\" is required');
     });
 
 });

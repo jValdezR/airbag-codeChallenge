@@ -7,7 +7,7 @@ class UserMiddleware {
       await verifyPost().validateAsync({ ...req.body });
       next();
     } catch (error) {
-      res.status(406).json({ details: error.details[0].message });
+      res.status(406).json({ message: error.details[0].message });
       // Return a 406 (Not Acceptable) status code with the validation error message.
     }
   }
@@ -21,7 +21,7 @@ class UserMiddleware {
       });
       next();
     } catch (error) {
-      res.status(406).json({ details: error.details[0].message });
+      res.status(406).json({ message: error.details[0].message });
       // Return a 406 (Not Acceptable) status code with the validation error message.
     }
   }
@@ -32,7 +32,7 @@ class UserMiddleware {
       await verifyGet().validateAsync({ ...req.query });
       next();
     } catch (error) {
-      res.status(406).json({ details: error.details[0].message });
+      res.status(406).json({ message: error.details[0].message });
       // Return a 406 (Not Acceptable) status code with the validation error message.
     }
   }
@@ -43,7 +43,7 @@ class UserMiddleware {
       await verifyGet().validateAsync({ ...req.query });
       next();
     } catch (error) {
-      res.status(406).json({ details: error.details[0].message });
+      res.status(406).json({ message: error.details[0].message });
       // Return a 406 (Not Acceptable) status code with the validation error message.
     }
   }

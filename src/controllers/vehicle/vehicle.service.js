@@ -49,7 +49,7 @@ class VehicleService {
             if (!term) {
                 vehicle = await Vehicle.findAll();
                 return {
-                    status: 201,
+                    status: 200,
                     vehicles: vehicle
                 };
             }
@@ -74,7 +74,7 @@ class VehicleService {
             } else {
                 return {
                     status: 404,
-                    message: 'Vehicle not found'
+                    message: 'Vehicle Not Found.'
                 };
             }
         } catch (error) {
@@ -113,7 +113,7 @@ class VehicleService {
             } else {
                 return {
                     status: 404,
-                    message: 'Vehicle not found'
+                    message: 'Vehicle Not Found.'
                 };
             }
         } catch (error) {
@@ -146,7 +146,7 @@ class VehicleService {
             } else {
                 return {
                     status: 404,
-                    message: 'Vehicle not found'
+                    message: 'Vehicle Not Found.'
                 };
             }
         } catch (error) {

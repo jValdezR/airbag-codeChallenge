@@ -17,7 +17,7 @@ class UserVehicleService {
             if (!user) {
                 return {
                     status: 404,
-                    message: 'User Not Found'
+                    message: 'User Not Found.'
                 };
             }
 
@@ -25,9 +25,15 @@ class UserVehicleService {
             if (!vehicle) {
                 return {
                     status: 404,
-                    message: 'Vehicle not found'
+                    message: 'Vehicle Not Found.'
                 };
             }
+
+            if (vehicle.userId)
+                return {
+                    status: 400,
+                    message: 'Vehicle is already assigned.'
+                }
 
             // Associate the vehicle with the user by setting the userId property.
             vehicle.userId = user.id;
