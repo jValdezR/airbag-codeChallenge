@@ -7,6 +7,8 @@ module.exports = {
   server: {
     // Environment variable for defining the server port
     PORT: process.env.PORT,
+    API_KEY_NAME: process.env.API_KEY_NAME,
+    API_KEY_VALUE: process.env.API_KEY_VALUE
   },
   // Configuration for API keys
   api_keys: {
