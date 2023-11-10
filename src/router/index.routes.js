@@ -11,10 +11,9 @@ const { verifyApiKey } = require('../middlewares/security.middleware');
 // Create an instance of the Express Router to define application routes
 const routes = express();
 
-
 // Mount and use the defined routes from separate route modules
 routes.use(
-  // '/docs/', swaggerUi.serve, swaggerUi.setup(swaggerJsDoc(swaggerSpec)),
+  // '/docs/', swaggerUi.serve, swaggerUi.setup(swaggerJsDoc(swaggerSpec)), //uncomment for swagger
   require('./welcome.routes'), // Mounts the welcome routes
   verifyApiKey, // Middleware for security
   saveRequest,  // Middleare to save all request

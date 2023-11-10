@@ -258,231 +258,231 @@ describe('createVehicle', () => {
 
 // To use the tests of update and remove vehicle, be sure that are data on database and check the terms that you are using, or the tests going to fail.
 
-// describe('updateVehicle', () => {
-//     it('updateVehicle should return a message with 406 status code when called without vehicle niv', async () => {
-//         const response = await request(app).patch('/api/vehicles/').query({ term: '4T1BE32K55U678432' }).send({
-//             "plate": "135-754-911",
-//             "brand": "Mazda",
-//             "typeOfVehicle": "suv",
-//             "price": 50000,
-//         })
-//         expect(response.status).to.equal(406);
-//         expect(response.type).to.match(/json/);
-//         expect(response.body).to.be.an('object')
-//         expect(response.body).to.have.property('message').and.equal('\"niv\" is required');
-//     });
+describe('updateVehicle', () => {
+    it('updateVehicle should return a message with 406 status code when called without vehicle niv', async () => {
+        const response = await request(app).patch('/api/vehicles/').query({ term: '4T1BE32K55U678432' }).send({
+            "plate": "135-754-911",
+            "brand": "Mazda",
+            "typeOfVehicle": "suv",
+            "price": 50000,
+        })
+        expect(response.status).to.equal(406);
+        expect(response.type).to.match(/json/);
+        expect(response.body).to.be.an('object')
+        expect(response.body).to.have.property('message').and.equal('\"niv\" is required');
+    });
 
-//     it('updateVehicle should return a message with 406 status code when called without vehicle plate', async () => {
-//         const response = await request(app).patch('/api/vehicles/').query({ term: '4T1BE32K55U678432' }).send({
-//             "niv": "4T1BE32K55U678432",
-//             "brand": "Mazda",
-//             "typeOfVehicle": "suv",
-//             "price": 50000,
-//         })
-//         expect(response.status).to.equal(406);
-//         expect(response.type).to.match(/json/);
-//         expect(response.body).to.be.an('object')
+    it('updateVehicle should return a message with 406 status code when called without vehicle plate', async () => {
+        const response = await request(app).patch('/api/vehicles/').query({ term: '4T1BE32K55U678432' }).send({
+            "niv": "4T1BE32K55U678432",
+            "brand": "Mazda",
+            "typeOfVehicle": "suv",
+            "price": 50000,
+        })
+        expect(response.status).to.equal(406);
+        expect(response.type).to.match(/json/);
+        expect(response.body).to.be.an('object')
 
-//         expect(response.body).to.have.property('message').and.equal('\"plate\" is required');
-//     });
+        expect(response.body).to.have.property('message').and.equal('\"plate\" is required');
+    });
 
-//     it('updateVehicle should return a message with 406 status code when called without vehicle brand', async () => {
-//         const response = await request(app).patch('/api/vehicles/').query({ term: '4T1BE32K55U678432' }).send({
-//             "plate": "135-754-911",
-//             "niv": "4T1BE32K55U678432",
-//             "typeOfVehicle": "suv",
-//             "price": 50000,
-//         })
-//         expect(response.status).to.equal(406);
-//         expect(response.type).to.match(/json/);
-//         expect(response.body).to.be.an('object')
+    it('updateVehicle should return a message with 406 status code when called without vehicle brand', async () => {
+        const response = await request(app).patch('/api/vehicles/').query({ term: '4T1BE32K55U678432' }).send({
+            "plate": "135-754-911",
+            "niv": "4T1BE32K55U678432",
+            "typeOfVehicle": "suv",
+            "price": 50000,
+        })
+        expect(response.status).to.equal(406);
+        expect(response.type).to.match(/json/);
+        expect(response.body).to.be.an('object')
 
-//         expect(response.body).to.have.property('message').and.equal('\"brand\" is required');
-//     });
+        expect(response.body).to.have.property('message').and.equal('\"brand\" is required');
+    });
 
-//     it('updateVehicle should return a message with 406 status code when called without vehicle typeOfVehicle', async () => {
-//         const response = await request(app).patch('/api/vehicles/').query({ term: '4T1BE32K55U678432' }).send({
-//             "plate": "135-754-911",
-//             "brand": "Mazda",
-//             "niv": "4T1BE32K55U678432",
-//             "price": 50000,
-//         })
-//         expect(response.status).to.equal(406);
-//         expect(response.type).to.match(/json/);
-//         expect(response.body).to.be.an('object')
+    it('updateVehicle should return a message with 406 status code when called without vehicle typeOfVehicle', async () => {
+        const response = await request(app).patch('/api/vehicles/').query({ term: '4T1BE32K55U678432' }).send({
+            "plate": "135-754-911",
+            "brand": "Mazda",
+            "niv": "4T1BE32K55U678432",
+            "price": 50000,
+        })
+        expect(response.status).to.equal(406);
+        expect(response.type).to.match(/json/);
+        expect(response.body).to.be.an('object')
 
-//         expect(response.body).to.have.property('message').and.equal('\"typeOfVehicle\" is required');
-//     });
+        expect(response.body).to.have.property('message').and.equal('\"typeOfVehicle\" is required');
+    });
 
-//     it('updateVehicle should return a message with 406 status code when called without vehicle price', async () => {
-//         const response = await request(app).patch('/api/vehicles/').query({ term: '4T1BE32K55U678432' }).send({
-//             "plate": "135-754-911",
-//             "brand": "Mazda",
-//             "typeOfVehicle": "suv",
-//             "niv": "4T1BE32K55U678432",
-//         })
-//         expect(response.status).to.equal(406);
-//         expect(response.type).to.match(/json/);
-//         expect(response.body).to.be.an('object')
+    it('updateVehicle should return a message with 406 status code when called without vehicle price', async () => {
+        const response = await request(app).patch('/api/vehicles/').query({ term: '4T1BE32K55U678432' }).send({
+            "plate": "135-754-911",
+            "brand": "Mazda",
+            "typeOfVehicle": "suv",
+            "niv": "4T1BE32K55U678432",
+        })
+        expect(response.status).to.equal(406);
+        expect(response.type).to.match(/json/);
+        expect(response.body).to.be.an('object')
 
-//         expect(response.body).to.have.property('message').and.equal('\"price\" is required');
-//     });
+        expect(response.body).to.have.property('message').and.equal('\"price\" is required');
+    });
 
-//     it('updateVehicle should return a vehicle with 200 status code when called with valid object', async () => {
-//         const response = await request(app).patch('/api/vehicles/').query({ term: '4T1BE32K55U678432' }).send({
-//             "plate": "135-754-999",
-//             "niv": "4T1BE32K55U678432",
-//             "brand": "Mazda",
-//             "typeOfVehicle": "suv",
-//             "price": 50000,
-//         })
-//         expect(response.status).to.equal(200);
-//         expect(response.type).to.match(/json/);
-//         expect(response.body).to.be.an('object')
+    it('updateVehicle should return a vehicle with 200 status code when called with valid object', async () => {
+        const response = await request(app).patch('/api/vehicles/').query({ term: '4T1BE32K55U678432' }).send({
+            "plate": "135-754-999",
+            "niv": "4T1BE32K55U678432",
+            "brand": "Mazda",
+            "typeOfVehicle": "suv",
+            "price": 50000,
+        })
+        expect(response.status).to.equal(200);
+        expect(response.type).to.match(/json/);
+        expect(response.body).to.be.an('object')
 
-//         expect(response.body).to.have.property('id').that.is.a('string');
-//         expect(response.body).to.have.property('plate').that.is.a('string');
-//         expect(response.body).to.have.property('niv').that.is.a('string');
-//         expect(response.body).to.have.property('brand').that.is.a('string');
-//         expect(response.body).to.have.property('typeOfVehicle').that.is.a('string');
-//         expect(response.body).to.have.property('price').that.is.a('number');
-//         expect(response.body.userId).to.satisfy(userId => userId === null || typeof userId === 'string');
+        expect(response.body).to.have.property('id').that.is.a('string');
+        expect(response.body).to.have.property('plate').that.is.a('string');
+        expect(response.body).to.have.property('niv').that.is.a('string');
+        expect(response.body).to.have.property('brand').that.is.a('string');
+        expect(response.body).to.have.property('typeOfVehicle').that.is.a('string');
+        expect(response.body).to.have.property('price').that.is.a('number');
+        expect(response.body.userId).to.satisfy(userId => userId === null || typeof userId === 'string');
 
-//     });
+    });
 
-//     it('updateVehicle should return a message with 400 status code when called with existent plate', async () => {
-//         const response = await request(app).patch('/api/vehicles/').query({ term: '4T1BE32K55U678432' }).send({
-//             "plate": "135-754-976",
-//             "niv": "4T1BE32K55U678432",
-//             "brand": "Mazda",
-//             "typeOfVehicle": "suv",
-//             "price": 50000,
-//         })
-//         expect(response.status).to.equal(400);
-//         expect(response.type).to.match(/json/);
-//         expect(response.body).to.be.an('object')
+    it('updateVehicle should return a message with 400 status code when called with existent plate', async () => {
+        const response = await request(app).patch('/api/vehicles/').query({ term: '4T1BE32K55U678432' }).send({
+            "plate": "135-754-976",
+            "niv": "4T1BE32K55U678432",
+            "brand": "Mazda",
+            "typeOfVehicle": "suv",
+            "price": 50000,
+        })
+        expect(response.status).to.equal(400);
+        expect(response.type).to.match(/json/);
+        expect(response.body).to.be.an('object')
 
-//         expect(response.body).to.have.property('message').and.equal('Key (plate)=(135-754-976) already exists.');
-//     });
+        expect(response.body).to.have.property('message').and.equal('Key (plate)=(135-754-976) already exists.');
+    });
 
-//     it('updateVehicle should return a message with 400 status code when called with existent niv', async () => {
-//         const response = await request(app).patch('/api/vehicles/').query({ term: '4T1BE32K55U678432' }).send({
-//             "plate": "135-754-922",
-//             "niv": "4T1BE32K55U678421",
-//             "brand": "Mazda",
-//             "typeOfVehicle": "suv",
-//             "price": 50000,
-//         })
-//         expect(response.status).to.equal(400);
-//         expect(response.type).to.match(/json/);
-//         expect(response.body).to.be.an('object')
+    it('updateVehicle should return a message with 400 status code when called with existent niv', async () => {
+        const response = await request(app).patch('/api/vehicles/').query({ term: '4T1BE32K55U678432' }).send({
+            "plate": "135-754-922",
+            "niv": "4T1BE32K55U678421",
+            "brand": "Mazda",
+            "typeOfVehicle": "suv",
+            "price": 50000,
+        })
+        expect(response.status).to.equal(400);
+        expect(response.type).to.match(/json/);
+        expect(response.body).to.be.an('object')
 
-//         expect(response.body).to.have.property('message').and.equal('Key (niv)=(4T1BE32K55U678421) already exists.');
-//     });
+        expect(response.body).to.have.property('message').and.equal('Key (niv)=(4T1BE32K55U678421) already exists.');
+    });
 
-//     it('updateVehicle should return a message with 406 status code when called with not valid niv', async () => {
-//         const response = await request(app).patch('/api/vehicles/').query({ term: '4T1BE32K55U678432' }).send({
-//             "plate": "135-754-911",
-//             "niv": "4T1BE32K55U684",
-//             "brand": "Mazda",
-//             "typeOfVehicle": "suv",
-//             "price": 50000,
-//         })
-//         expect(response.status).to.equal(406);
-//         expect(response.type).to.match(/json/);
-//         expect(response.body).to.be.an('object')
+    it('updateVehicle should return a message with 406 status code when called with not valid niv', async () => {
+        const response = await request(app).patch('/api/vehicles/').query({ term: '4T1BE32K55U678432' }).send({
+            "plate": "135-754-911",
+            "niv": "4T1BE32K55U684",
+            "brand": "Mazda",
+            "typeOfVehicle": "suv",
+            "price": 50000,
+        })
+        expect(response.status).to.equal(406);
+        expect(response.type).to.match(/json/);
+        expect(response.body).to.be.an('object')
 
-//         expect(response.body).to.have.property('message').and.equal('The \"niv\" does not match the NIV pattern.');
-//     });
+        expect(response.body).to.have.property('message').and.equal('The \"niv\" does not match the NIV pattern.');
+    });
 
-//     it('updateVehicle should return a message with 406 status code when called with not valid brand', async () => {
-//         const response = await request(app).patch('/api/vehicles/').query({ term: '4T1BE32K55U678432' }).send({
-//             "plate": "135-754-911",
-//             "niv": "4T1BE32K55U678421",
-//             "brand": "Mazd",
-//             "typeOfVehicle": "suv",
-//             "price": 50000,
-//         })
-//         expect(response.status).to.equal(406);
-//         expect(response.type).to.match(/json/);
-//         expect(response.body).to.be.an('object')
+    it('updateVehicle should return a message with 406 status code when called with not valid brand', async () => {
+        const response = await request(app).patch('/api/vehicles/').query({ term: '4T1BE32K55U678432' }).send({
+            "plate": "135-754-911",
+            "niv": "4T1BE32K55U678421",
+            "brand": "Mazd",
+            "typeOfVehicle": "suv",
+            "price": 50000,
+        })
+        expect(response.status).to.equal(406);
+        expect(response.type).to.match(/json/);
+        expect(response.body).to.be.an('object')
 
-//         expect(response.body).to.have.property('message').and.equal('\"brand\" must be one of [Mazda, Honda, Toyota, Renault, Volkswagen]');
-//     });
+        expect(response.body).to.have.property('message').and.equal('\"brand\" must be one of [Mazda, Honda, Toyota, Renault, Volkswagen]');
+    });
 
-//     it('updateVehicle should return a message with 406 status code when called with not valid typeOfVehicle', async () => {
-//         const response = await request(app).patch('/api/vehicles/').query({ term: '4T1BE32K55U678432' }).send({
-//             "plate": "135-754-911",
-//             "niv": "4T1BE32K55U678421",
-//             "brand": "Mazda",
-//             "typeOfVehicle": "suav",
-//             "price": 50000,
-//         })
-//         expect(response.status).to.equal(406);
-//         expect(response.type).to.match(/json/);
-//         expect(response.body).to.be.an('object')
+    it('updateVehicle should return a message with 406 status code when called with not valid typeOfVehicle', async () => {
+        const response = await request(app).patch('/api/vehicles/').query({ term: '4T1BE32K55U678432' }).send({
+            "plate": "135-754-911",
+            "niv": "4T1BE32K55U678421",
+            "brand": "Mazda",
+            "typeOfVehicle": "suav",
+            "price": 50000,
+        })
+        expect(response.status).to.equal(406);
+        expect(response.type).to.match(/json/);
+        expect(response.body).to.be.an('object')
 
-//         expect(response.body).to.have.property('message').and.equal('\"typeOfVehicle\" must be one of [sedan, hb, suv, roadster]');
-//     });
-// })
+        expect(response.body).to.have.property('message').and.equal('\"typeOfVehicle\" must be one of [sedan, hb, suv, roadster]');
+    });
+})
 
-// describe('removeVehicle', () => {
-//     it('removeVehicle should return a vehicle with 200 status code when called with existent vehicle id', async () => {
-//         const response = await request(app).delete('/api/vehicles/').query({ term: '2ca569a6-790c-49fb-a415-b84ffa68fbc8' });
-//         expect(response.status).to.equal(200);
-//         expect(response.type).to.match(/json/);
-//         expect(response.body).to.be.an('object')
+describe('removeVehicle', () => {
+    it('removeVehicle should return a vehicle with 200 status code when called with existent vehicle id', async () => {
+        const response = await request(app).delete('/api/vehicles/').query({ term: '2ca569a6-790c-49fb-a415-b84ffa68fbc8' });
+        expect(response.status).to.equal(200);
+        expect(response.type).to.match(/json/);
+        expect(response.body).to.be.an('object')
 
-//         expect(response.body).to.have.property('message').and.equal('Vehicle removed');
+        expect(response.body).to.have.property('message').and.equal('Vehicle removed');
 
-//     });
+    });
 
-//     it('removeVehicle should return a message with 200 status code when called with existent vehicle plate', async () => {
-//         const response = await request(app).delete('/api/vehicles/').query({ term: '135-754-972' });
-//         expect(response.status).to.equal(200);
-//         expect(response.type).to.match(/json/);
+    it('removeVehicle should return a message with 200 status code when called with existent vehicle plate', async () => {
+        const response = await request(app).delete('/api/vehicles/').query({ term: '135-754-972' });
+        expect(response.status).to.equal(200);
+        expect(response.type).to.match(/json/);
 
-//         expect(response.body).to.have.property('message').and.equal('Vehicle removed');
+        expect(response.body).to.have.property('message').and.equal('Vehicle removed');
 
-//     });
+    });
 
-//     it('removeVehicle should return a message with 200 status code when called with existent vehicle niv', async () => {
-//         const response = await request(app).delete('/api/vehicles/').query({ term: '4T1BE32K55U678432' });
-//         expect(response.status).to.equal(200);
-//         expect(response.type).to.match(/json/);
-//         expect(response.body).to.be.an('object')
+    it('removeVehicle should return a message with 200 status code when called with existent vehicle niv', async () => {
+        const response = await request(app).delete('/api/vehicles/').query({ term: '4T1BE32K55U678432' });
+        expect(response.status).to.equal(200);
+        expect(response.type).to.match(/json/);
+        expect(response.body).to.be.an('object')
 
-//         expect(response.body).to.have.property('message').and.equal('Vehicle removed');
+        expect(response.body).to.have.property('message').and.equal('Vehicle removed');
 
-//     });
+    });
 
-//     it('removeVehicle should return a message with 404 status code when called with inexistent vehicle id', async () => {
-//         const response = await request(app).delete('/api/vehicles/').query({ term: '9666c9bc-d2c6-4248-bdb5-81cccf4501f3' });
-//         expect(response.status).to.equal(404);
-//         expect(response.type).to.match(/json/);
-//         expect(response.body).to.be.an('object')
+    it('removeVehicle should return a message with 404 status code when called with inexistent vehicle id', async () => {
+        const response = await request(app).delete('/api/vehicles/').query({ term: '9666c9bc-d2c6-4248-bdb5-81cccf4501f3' });
+        expect(response.status).to.equal(404);
+        expect(response.type).to.match(/json/);
+        expect(response.body).to.be.an('object')
 
-//         expect(response.body).to.have.property('message').and.equal('Vehicle Not Found.')
-//     });
+        expect(response.body).to.have.property('message').and.equal('Vehicle Not Found.')
+    });
 
-//     it('removeVehicle should return a message with 404 status code when called with inexistent vehicle plate', async () => {
-//         const response = await request(app).delete('/api/vehicles/').query({ term: '135-754-975' });
-//         expect(response.status).to.equal(404);
-//         expect(response.type).to.match(/json/);
-//         expect(response.body).to.be.an('object')
+    it('removeVehicle should return a message with 404 status code when called with inexistent vehicle plate', async () => {
+        const response = await request(app).delete('/api/vehicles/').query({ term: '135-754-975' });
+        expect(response.status).to.equal(404);
+        expect(response.type).to.match(/json/);
+        expect(response.body).to.be.an('object')
 
-//         expect(response.body).to.have.property('message').and.equal('Vehicle Not Found.')
-//     });
+        expect(response.body).to.have.property('message').and.equal('Vehicle Not Found.')
+    });
 
-//     it('removeVehicle should return a message with 404 status code when called with inexistent vehicle niv', async () => {
-//         const response = await request(app).delete('/api/vehicles/').query({ term: '4T1BE32K55U678420' });
-//         expect(response.status).to.equal(404);
-//         expect(response.type).to.match(/json/);
-//         expect(response.body).to.be.an('object')
+    it('removeVehicle should return a message with 404 status code when called with inexistent vehicle niv', async () => {
+        const response = await request(app).delete('/api/vehicles/').query({ term: '4T1BE32K55U678420' });
+        expect(response.status).to.equal(404);
+        expect(response.type).to.match(/json/);
+        expect(response.body).to.be.an('object')
 
-//         expect(response.body).to.have.property('message').and.equal('Vehicle Not Found.')
-//     });
-// })
+        expect(response.body).to.have.property('message').and.equal('Vehicle Not Found.')
+    });
+})
 
 describe('getPrice', () => {
     it('getPrice should return an array of vehicle with the price in different currencies', async () => {

@@ -27,6 +27,7 @@
    ```
 
 8. Check the documentation in ```/api/docs/```
+Documentation is disabled for docker incompatibility, the configuration is commented on src/router/index.routes, uncomment the lines and run the app on dev to see the swagger documentation.
 
 ## Used Stack
 * PostgreSQL
