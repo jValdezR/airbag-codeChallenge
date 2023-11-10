@@ -13,12 +13,11 @@ class UserVehicleController {
 
             // Call the service to create the user-vehicle association.
             const data = await userVehicleService.createUserVehicle(userTerm, vehicleTerm);
-
             // Respond with the created association data.
             res.status(data.status).json({ message: data.message });
         } catch (error) {
             // Handle any errors and send an appropriate response.
-            res.status(500).json({ error: "Failed to create user-vehicle association" });
+            res.status(500).json({ message: "Internal Server Error" });
         }
     }
 }
