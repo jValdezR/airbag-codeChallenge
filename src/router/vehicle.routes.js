@@ -1,17 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const {
-  verifyPost,
-  verifyGet,
-  verifyPatch,
-  verifyDelete,
+	verifyPost,
+	verifyGet,
+	verifyPatch,
+	verifyDelete,
 } = require('../middlewares/vehicle.middleware');
 const {
-  createVehicle,
-  findVehicle,
-  updateVehicle,
-  removeVehicle,
-  getPrice,
+	createVehicle,
+	findVehicle,
+	updateVehicle,
+	removeVehicle,
+	getPrice,
 } = require('../controllers/vehicle/vehicle.controller');
 
 

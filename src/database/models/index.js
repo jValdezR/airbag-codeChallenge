@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 'use strict';
 
 const fs = require('fs');
@@ -11,31 +12,31 @@ const db = {};
 let sequelize;
 
 if (config.use_env_variable) {
-  // If a specific environment variable is set, use it to connect to the database
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+	// If a specific environment variable is set, use it to connect to the database
+	sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
-  // Otherwise, use the database configuration from config.js
-  sequelize = new Sequelize(config.database, config.username, config.password, {
-    ...config,
-  });
+	// Otherwise, use the database configuration from config.js
+	sequelize = new Sequelize(config.database, config.username, config.password, {
+		...config,
+	});
 }
 
 fs
-  .readdirSync(__dirname)
-  .filter(file => {
-    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
-  })
-  .forEach(file => {
-    // Import and initialize each model and associate it with the Sequelize instance
-    const model = require(path.join(__dirname, file))(sequelize, Sequelize);
-    db[model.name] = model;
-  });
+	.readdirSync(__dirname)
+	.filter(file => {
+		return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
+	})
+	.forEach(file => {
+		// Import and initialize each model and associate it with the Sequelize instance
+		const model = require(path.join(__dirname, file))(sequelize, Sequelize);
+		db[model.name] = model;
+	});
 
 // Associate models if associations are defined
 Object.keys(db).forEach(modelName => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
-  }
+	if (db[modelName].associate) {
+		db[modelName].associate(db);
+	}
 });
 
 db.sequelize = sequelize;

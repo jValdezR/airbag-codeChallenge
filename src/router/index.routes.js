@@ -13,13 +13,13 @@ const routes = express();
 
 // Mount and use the defined routes from separate route modules
 routes.use(
-  // '/docs/', swaggerUi.serve, swaggerUi.setup(swaggerJsDoc(swaggerSpec)), //uncomment for swagger
-  require('./welcome.routes'), // Mounts the welcome routes
-  verifyApiKey, // Middleware for security
-  saveRequest,  // Middleare to save all request
-  require('./user.routes'), // Mounts the user routes
-  require('./vehicle.routes'), //Mount the vehicle routes
-  require('./user-vehicle.routes') //Mount the user-vehicle routes
+	// '/docs/', swaggerUi.serve, swaggerUi.setup(swaggerJsDoc(swaggerSpec)), //uncomment for swagger
+	require('./welcome.routes'), // Mounts the welcome routes
+	verifyApiKey, // Middleware for security
+	saveRequest,  // Middleare to save all request
+	require('./user.routes'), // Mounts the user routes
+	require('./vehicle.routes'), //Mount the vehicle routes
+	require('./user-vehicle.routes') //Mount the user-vehicle routes
 );
 
 // Export the configured Express Router instance containing all defined routes
